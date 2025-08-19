@@ -122,6 +122,47 @@ A empresa deve investir em **programas de fidelização** e **melhoria na percep
 * Variáveis de **contrato e tempo de permanência** são determinantes para prever churn.
 * Há espaço para otimizar campanhas de retenção segmentadas por perfil de cliente.
 
+## Próximos passos
+1. Pré-processamento dos dados
+- **Testar outras técnicas de balanceamento além do SMOTE**:
+  - **SMOTEENN** ou **SMOTETomek** → combina oversampling + limpeza de ruído.
+  - **Random Undersampling** → remover clientes não churn em excesso.
+  - **Class Weights** → penalizar mais os erros da classe churn sem alterar os dados.
+    ```python
+    LogisticRegression(class_weight='balanced')
+    XGBClassifier(scale_pos_weight=ratio)
+    ```
+- **Feature Engineering**  
+  Criar novas variáveis pode ter mais impacto que trocar de modelo:
+  - Tempo médio até cancelamento.
+  - Razão entre gasto atual e gasto histórico.
+  - Número de interações recentes do cliente.
+
+2. Modelagem
+- **Validação cruzada (Cross-Validation, ex. StratifiedKFold)**  
+  Evita depender de uma única divisão treino/teste e gera resultados mais confiáveis.
+
+- **Ajuste de hiperparâmetros (Hyperparameter Tuning)**  
+  Tanto Logistic Regression quanto XGBoost podem melhorar bastante com `GridSearchCV`, `RandomizedSearchCV` ou **Optuna**.
+  - Logistic Regression → parâmetro `C` (regularização), solver.  
+  - XGBoost → parâmetros como `n_estimators`, `max_depth`, `learning_rate`, `subsample`, `colsample_bytree`.
+
+- **Ensembles**  
+  Combinar modelos pode melhorar a performance:
+  - Stacking ou blending de Logistic Regression + XGBoost.  
+  - Une recall alto de um com precisão do outro.
+
+3. Avaliação
+- **Métricas focadas no negócio**  
+  Como churn é desbalanceado, acurácia pode enganar.  
+  - Usar **F1-score** (equilíbrio entre recall e precisão).  
+  - Usar **PR AUC (Precision-Recall AUC)** → mais informativo para dados desbalanceados.  
+
+- **Threshold Tuning**  
+  Atualmente, o corte padrão `0.5` está sendo usado.  
+  - Ajustar o threshold pode aumentar recall sem perder tanto na precisão.  
+  - Exemplo: usar `predict_proba` e escolher o ponto ótimo na curva Precision-Recall.
+ 
 ## 📞 Contato
 
 <div align="left">
