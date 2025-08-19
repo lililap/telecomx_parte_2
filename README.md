@@ -26,3 +26,109 @@
 - Avaliar o desempenho dos modelos com métricas.
 - Interpretar os resultados, incluindo a importância das variáveis.
 - Criar uma conclusão estratégica apontando os principais fatores que influenciam a evasão.
+
+## 🚀 Como executar o projeto
+
+1. Faça o download dos arquivos deste repositório:
+   - `Challenge_TelecomX_Parte_2_Lidia_Lapertosa.ipynb`
+   - `df_limpo.csv` (arquivo de dados)
+
+2. Abra o **Google Colab** ([link](https://colab.research.google.com/)).
+
+3. Faça o upload dos arquivos para o Colab.
+
+4. No notebook, importe o arquivo CSV utilizando **Pandas**:
+
+   ```python
+   import pandas as pd
+   df = pd.read_csv("df_limpo.csv")
+
+5. Execute as células na ordem em que estão no notebook para reproduzir toda a análise.
+
+## 📝 Metodologia
+
+O projeto foi desenvolvido em diferentes etapas:
+
+1. **Preparação dos Dados**
+   * Tratamento de valores ausentes
+   * Padronização de variáveis categóricas e numéricas
+
+2. **Correlação e Seleção de Variáveis**
+   * Análise exploratória
+   * Identificação das variáveis mais relevantes para o churn
+
+3. **Modelagem Preditiva**
+   * Treinamento com **Logistic Regression** e **XGBoost**
+
+4. **Análise dos Modelos**
+   * Avaliação usando métricas de classificação: AUC, F1-Score, Precision e Recall
+
+5. **Importância das Variáveis**
+   * Análise da contribuição de cada variável em cada modelo
+   * Visualização gráfica da importância das features
+
+6. **Conclusão**
+   * Principais insights
+   * Recomendação final para a empresa
+
+## 🤖 Modelos Utilizados
+
+Foram selecionados dois algoritmos complementares para análise comparativa:
+
+**Logistic Regression**
+
+* Modelo linear probabilístico com alta interpretabilidade
+* Coeficientes fornecem insights diretos sobre impacto das features
+* Baseline robusto para problemas de classificação binária
+
+**XGBoost (Extreme Gradient Boosting)**
+
+* Ensemble de árvores de decisão com boosting
+* Captura interações complexas e relações não-lineares
+* Otimização automática de hiperparâmetros e regularização
+
+## 🔍 Comparação de Métricas
+
+| Métrica | Logistic Regression | XGBoost | 🥇 Vencedor |
+|---------|-------------------|---------|-------------|
+| **Acurácia** | 75.1% | 76.5% | XGBoost |
+| **ROC AUC** | 84.5% | 80.9% | **Logistic Regression** |
+| **Recall (Churn)** | 81% | 56% | **Logistic Regression** |
+| **Precision (Churn)** | 52% | 56% | XGBoost |
+
+## 📊 Principais Variáveis
+
+Os modelos identificaram variáveis com maior impacto no churn.
+
+* **Logistic Regression**
+
+<img width="821" height="590" alt="variaveis_regressao_logistica" src="https://github.com/user-attachments/assets/76fd9119-6d62-4c7a-bd1c-be8d5428c7e6" />
+
+* **XGBoost**
+<img width="790" height="590" alt="variaveis_xgboost" src="https://github.com/user-attachments/assets/f9d28101-6625-4da6-8960-a2b1e8c9771e" />
+
+## 📌 Conclusão e Recomendações
+
+* Clientes com **menor tempo de contrato** apresentam maior probabilidade de churn.
+* O **tipo de serviço de internet (Fiber Optic)** foi uma variável fortemente associada ao cancelamento.
+* **Contratos mais longos (2 anos)** reduzem significativamente o churn.
+
+**Recomendação Final:**
+A empresa deve investir em **programas de fidelização** e **melhoria na percepção do serviço de internet fibra**, já que esses fatores são cruciais para retenção.
+
+## 💡 Principais Insights
+
+* O **XGBoost** apresentou maior acurácia geral, mas o **Logistic Regression** se destacou em Recall (essencial em churn, pois minimizar falsos negativos é mais importante).
+* Variáveis de **contrato e tempo de permanência** são determinantes para prever churn.
+* Há espaço para otimizar campanhas de retenção segmentadas por perfil de cliente.
+
+## 📞 Contato
+
+<div align="left">
+<img src="https://github.com/user-attachments/assets/07594e84-2524-4810-a5dc-58abc9526ca3" alt="imagem autora do projeto" width="150px">
+
+**Lidia Lapertosa**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lidia-lapertosa/)
+
+📧 Em caso de dúvidas, entre em contato!
